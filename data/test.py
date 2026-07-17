@@ -1,47 +1,9 @@
 import json
-def load_database():
-    with open("scenes.json","r") as file:
-        scenes=json.load(file)
-    return scenes
-
-def scene_printer(scene):
-    """prints a scene"""
-    print(scene["anime"])
-    print(scene["episode"])
-    print(scene["timestamp"])
-    print(scene["description"])
-
-def save_database(scenes):
-     """updates the json with the current database"""    
-     with open("scenes.json","w") as f:
-      json.dump(scenes,f,indent=4)
-
-def add_scene(scenes):
-     """adds a scene from keyboard in the scenes list"""
-     anime=input("Anime name=")
-     ep=input("Episode name=")
-     timestamp=input("Timestamp=")
-     description=input("Description=")
-     new_scene={
-          "anime":anime,
-          "episode":ep,
-          "timestamp":timestamp,
-          "description":description,
-    }
-     scenes.append(new_scene)
-     save_database(scenes)
-def search_scenes(scenes,keyword):
-    """searches for scenes in anime names and desc based on inputted keywords + counts matches"""
-    matches=0
-    for element in scenes:
-          if keyword.lower() in element["description"].lower() or keyword.lower() in element["anime"].lower():
-              matches+=1
-              scene_printer(element)
-    if matches==0:
-        print("no matching scenes found")
-    else:
-        print("Found",matches, "matching scenes")
-    return matches
+from database import load_database
+from database import save_database
+from database import add_scene
+from display import scene_printer
+from search import search_scenes
 def main():
     scenes=load_database()
     option=-1
