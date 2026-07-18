@@ -1,11 +1,11 @@
 import json
 def load_database():
-    with open("scenes.json","r") as file:
+    with open("../data/scenes.json", "r") as file:
         scenes=json.load(file)
     return scenes
 def save_database(scenes):
      """updates the json with the current database"""    
-     with open("scenes.json","w") as f:
+     with open("../data/scenes.json","w") as f:
       json.dump(scenes,f,indent=4)
 
 def add_scene(scenes):
