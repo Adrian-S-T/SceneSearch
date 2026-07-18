@@ -1,11 +1,13 @@
 import json
+from pathlib import Path
+DATABASE_PATH = Path(__file__).parent.parent / "data" / "scenes.json"
 def load_database():
-    with open("../data/scenes.json", "r") as file:
+    with open(DATABASE_PATH,"r") as file:
         scenes=json.load(file)
     return scenes
 def save_database(scenes):
      """updates the json with the current database"""    
-     with open("../data/scenes.json","w") as f:
+     with open(DATABASE_PATH,"w") as f:
       json.dump(scenes,f,indent=4)
 
 def add_scene(scenes):
