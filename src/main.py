@@ -4,6 +4,7 @@ from database import save_database
 from database import add_scene
 from display import scene_printer
 from search import search_scenes
+from scene import Scene
 def main():
     scenes=load_database()
     option=-1
