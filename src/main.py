@@ -18,7 +18,13 @@ def main():
             print("what you entered is not a valid option")
         if option==1:
             keyword=input("Search:")
-            matches=search_scenes(scenes,keyword)
+            results=search_scenes(scenes,keyword)
+            results.sort(key=lambda result:result[1],reverse=True)
+            for scene in results:
+                 scene_printer(scene[0])
+                 print("score =",scene[1])
+            if(len(results)==0):
+                 print("No matching scenes found.")
             print("Search finished")
         elif option==2:
                 add_scene(scenes)
