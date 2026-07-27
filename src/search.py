@@ -4,7 +4,7 @@ def search_scenes(scenes,keyword):
     search_words=(keyword.lower()).split()
     results=[]
     for element in scenes:
-          text = (element.anime + " " + element.description).lower()
+          text = set(((element.anime + " " + element.description).lower()).split())
           score=0
           for word in search_words:
              if word in text:
