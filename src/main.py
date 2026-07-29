@@ -20,9 +20,15 @@ def main():
             keyword=input("Search:")
             results=search_scenes(scenes,keyword)
             results.sort(key=lambda result:result[1],reverse=True)
-            for scene in results:
-                 scene_printer(scene[0])
+            if len(results)>0:
+                 nr=len(results)
+                 print("Found",nr,"matching scenes.")
+            results=enumerate(results,start=1)
+            for index,scene in results:
+                 print("Result #",index)
                  print("score =",scene[1])
+                 scene_printer(scene[0])
+                 print("................................")
             if(len(results)==0):
                  print("No matching scenes found.")
             print("Search finished")
