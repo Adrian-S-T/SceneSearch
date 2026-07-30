@@ -20,18 +20,24 @@ def main():
             keyword=input("Search:")
             results=search_scenes(scenes,keyword)
             results.sort(key=lambda result:result[1],reverse=True)
-            if len(results)>0:
+            if results:
                  nr=len(results)
                  print("Found",nr,"matching scenes.")
-            results=enumerate(results,start=1)
-            for index,scene in results:
+            for index,scene in enumerate(results,start=1):
                  print("Result #",index)
                  print("score =",scene[1])
                  scene_printer(scene[0])
                  print("................................")
-            if(len(results)==0):
+            if not results:
                  print("No matching scenes found.")
             print("Search finished")
+            opt=int(input("Choose one of the results, type 0 to exit"))
+            if opt == 0:
+                 print("Cancelled.")
+            elif opt < 1 or opt > len(results):
+                 print("Invalid selection.")
+            else:
+                 scene_printer(results[opt-1][0])  
         elif option==2:
                 add_scene(scenes)
         elif option>3 or option<1:
