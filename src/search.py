@@ -1,12 +1,13 @@
 from display import scene_printer
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
 def search_scenes(scenes,keyword):
     """searches for scenes in anime names and desc based on inputted keywords + counts matches"""
-    search_words=(keyword.lower()).split()
+    search_words={stemmer.stem(word) for word in (keyword.lower()).split()}
     results=[]
     for element in scenes:
-          name = set(element.anime.lower().split())
-          description = set(element.description.lower().split())
-          score=0
+          name = {stemmer.stem(word) for word in element.anime.lower().split()}
+          description = {stemmer.stem(word) for word in element.description.lower().split()}
           for word in search_words:
              if word in name:
                       score=score+3
