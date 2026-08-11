@@ -2,8 +2,7 @@ from display import scene_printer
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 stemmer = PorterStemmer()
-def process_text(text):
-      return [stemmer.stem(word) for word in word_tokenize(text.lower())]
+from text_processing import process_text
 def search_scenes(scenes,keyword):
     """searches for scenes in anime names and desc based on inputted keywords + counts matches"""
     search_words={stemmer.stem(word) for word in word_tokenize(keyword.lower())}

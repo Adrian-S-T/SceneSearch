@@ -1,17 +1,22 @@
 import json
 from pathlib import Path
 from scene import Scene
+from text_processing import process_text
 DATABASE_PATH = Path(__file__).parent.parent / "data" / "scenes.json"
 def load_database():
     with open(DATABASE_PATH,"r") as file:
         scenes=json.load(file)
         newscenes=[]
         for element in scenes:
+            title_words=process_text(element["anime"])
+            desc_words=process_text(element["description"])
             scene = Scene(
             element["anime"],
             element["episode"],
             element["timestamp"],
-            element["description"]
+            element["description"],
+            title_words,
+            desc_words
             )
             newscenes.append(scene)
     return newscenes
@@ -30,11 +35,15 @@ def add_scene(scenes):
      ep=input("Episode name=")
      timestamp=input("Timestamp=")
      description=input("Description=")
+     title_words=process_text(anime)
+     desc_words=process_text(description)   
      newscene=Scene(
     anime,
     ep,
     timestamp,
-    description
+    description,
+    title_words,
+    desc_words
     )
      scenes.append(newscene)
      save_database(scenes)
