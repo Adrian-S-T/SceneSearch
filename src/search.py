@@ -9,8 +9,8 @@ def search_scenes(scenes,keyword):
     results=[]
     for element in scenes:
           score=0 
-          name = process_text(element.anime)
-          description = process_text(element.description)
+          name = element.name_words
+          description = element.description_words
           for word in search_words:
              score += 3 * name.count(word)
              score += description.count(word)
