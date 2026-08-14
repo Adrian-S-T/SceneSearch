@@ -17,3 +17,14 @@ def search_scenes(scenes,keyword):
           if score>0:
              results.append((element,score))
     return results
+def calculate_word_frequency(scenes):
+   word_frequency={}
+   for scene in scenes:
+       words=set(scene.name_words+scene.description_words)
+       for word in words:
+         if word in word_frequency:
+             word_frequency[word]+=1
+         else:
+             word_frequency[word]=1
+   return word_frequency
+
